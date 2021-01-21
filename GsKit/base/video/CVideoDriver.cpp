@@ -184,6 +184,9 @@ bool CVideoDriver::initResolutionList()
 #elif defined(__SWITCH__)
 	resolution.x = 1280;
 	resolution.y = 720;
+#elif defined(VITA)
+	resolution.x = 960;
+	resolution.y = 544;
 #endif
 
     GsVec2D<Uint16> desktopResolution(resolution);

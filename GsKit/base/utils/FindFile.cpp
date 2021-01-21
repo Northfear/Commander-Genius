@@ -46,6 +46,11 @@
 #  define __GNUC_PREREQ(maj, min) (0)
 # endif
 
+#ifdef VITA
+#include <psp2/kernel/iofilemgr.h>
+#define mkdir sceIoMkdir
+#endif
+
 #include <unordered_set>
 
 // for getpwduid
@@ -499,6 +504,8 @@ void InitBaseSearchPaths()
 #elif defined(__SWITCH__)
 	AddToFileList(&basesearchpaths, "/switch/CommanderGenius");
 	AddToFileList(&basesearchpaths, "romfs:/");
+#elif defined(VITA)
+	AddToFileList(&basesearchpaths, "ux0:data/CommanderGenius");
 #else // all other systems (Linux, *BSD, OS/2, ...)
 #ifdef ANDROID
 	//AddToFileList(&basesearchpaths, "${HOME}/SaveData");
@@ -806,7 +813,7 @@ std::string GetHomeDir()
 #ifndef WIN32
 #if defined(CAANOO) || defined(WIZ) || defined(GP2X) || defined(DINGOO) || defined(PANDORA)
 	char* home = getenv("PWD");
-#elif defined(__SWITCH__)
+#elif defined(__SWITCH__) || defined(VITA)
 	const char* home = "";
 	return home;
 #else
@@ -969,7 +976,7 @@ std::string GetAbsolutePath(const std::string &path) {
 		return SystemNativeToUtf8(buf);
 	else  // Failed
 		return path;
-#elif defined(__SWITCH__)
+#elif defined(__SWITCH__) || defined(VITA)
 	return "";
 #else
 	std::string exactpath;

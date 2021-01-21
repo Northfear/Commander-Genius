@@ -105,7 +105,7 @@ public:
 
     enum class RenderQuality
     { NEAREST, LINEAR }
-#ifdef __SWITCH__
+#if defined(__SWITCH__) || defined(VITA)
     mRenderScQuality = RenderQuality::NEAREST;
 #else
     mRenderScQuality = RenderQuality::LINEAR;

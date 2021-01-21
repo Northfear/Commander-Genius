@@ -119,6 +119,45 @@ void CInput::resetControls(const int player)
 	curInput[IC_BACK].joyeventtype = ETYPE_JOYBUTTON;
 	curInput[IC_BACK].joybutton = 10;
 	curInput[IC_BACK].which = 0;
+#elif defined(VITA)
+	curInput[IC_LEFT].joyeventtype = ETYPE_JOYBUTTON;
+	curInput[IC_LEFT].joybutton = 7;
+	curInput[IC_LEFT].which = 0;
+	curInput[IC_UP].joyeventtype = ETYPE_JOYBUTTON;
+	curInput[IC_UP].joybutton = 8;
+	curInput[IC_UP].which = 0;
+	curInput[IC_RIGHT].joyeventtype = ETYPE_JOYBUTTON;
+	curInput[IC_RIGHT].joybutton = 9;
+	curInput[IC_RIGHT].which = 0;
+	curInput[IC_DOWN].joyeventtype = ETYPE_JOYBUTTON;
+	curInput[IC_DOWN].joybutton = 6;
+	curInput[IC_DOWN].which = 0;
+
+	curInput[IC_JUMP].joyeventtype = ETYPE_JOYBUTTON;
+	curInput[IC_JUMP].joybutton = 2;
+	curInput[IC_JUMP].which = 0;
+	curInput[IC_POGO].joyeventtype = ETYPE_JOYBUTTON;
+	curInput[IC_POGO].joybutton = 3;
+	curInput[IC_POGO].which = 0;
+	curInput[IC_FIRE].joyeventtype = ETYPE_JOYBUTTON;
+	curInput[IC_FIRE].joybutton = 1;
+	curInput[IC_FIRE].which = 0;
+    curInput[IC_RUN].joyeventtype = ETYPE_JOYBUTTON;
+    curInput[IC_RUN].joybutton = 0;
+	curInput[IC_RUN].which = 0;
+
+	curInput[IC_STATUS].joyeventtype = ETYPE_JOYBUTTON;
+	curInput[IC_STATUS].joybutton = 10;
+	curInput[IC_STATUS].which = 0;
+	curInput[IC_CAMLEAD].joyeventtype = ETYPE_JOYBUTTON;
+	curInput[IC_CAMLEAD].joybutton = 4;
+	curInput[IC_CAMLEAD].which = 0;
+	curInput[IC_HELP].joyeventtype = ETYPE_JOYBUTTON;
+	curInput[IC_HELP].joybutton = 5;
+	curInput[IC_HELP].which = 0;
+	curInput[IC_BACK].joyeventtype = ETYPE_JOYBUTTON;
+	curInput[IC_BACK].joybutton = 11;
+	curInput[IC_BACK].which = 0;
 #else
 	// These are the default keyboard commands
 

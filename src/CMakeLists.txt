@@ -204,8 +204,9 @@ if(WIN32)
         target_link_libraries(CGeniusExe version)
 endif(WIN32)
 
-
-
+if(VITA)
+    INCLUDE(../vita/vita.cmake)
+endif(VITA)
 
 #cotire(CGeniusExe)
 

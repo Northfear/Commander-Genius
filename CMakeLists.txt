@@ -39,6 +39,15 @@ if(NINTENDO_SWITCH)
     ADD_DEFINITIONS(-D__SWITCH__)    
 endif(NINTENDO_SWITCH)
 
+OPTION(VITA "Build for PS Vita" No)
+
+if(PSVITA)
+    ADD_DEFINITIONS(-DVITA)
+    ADD_DEFINITIONS(-DLUA_32BITS)
+    SET(VITA_FLAGS "-Ofast -mcpu=cortex-a9 -mfpu=neon -ftree-vectorize -flto=jobserver -fgraphite-identity -floop-nest-optimize -floop-interchange -ftree-loop-distribution")
+    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${VITA_FLAGS}")
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${VITA_FLAGS}")
+endif(PSVITA)
 
 # GP2X builds
 OPTION(GP2X "Build for GP2X" No)

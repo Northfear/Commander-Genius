@@ -132,8 +132,36 @@ bool CSaveGameController::readSlotList(std::vector<std::string> &list)
     gLogging.ftextOut("Reading savegames from \"%s\"", m_savedir.c_str());
 	FindFiles(sfilelist, m_savedir, false, FM_REG);
 
-    for( const std::string &filename : sfilelist.list )
-    {
+#ifdef VITA
+	// Dirty Vita hack ahead!
+	// FindFiles returns full file path for Vita here. Later while opening xml file it tries to combine it into the full path again.
+	// This results in one big mess of a filepath that doesn't exists (and can't be read)
+	// FindFiles seems to work fine for executables. Problems only exists with save files (and mods maybe? idk)
+	// I'm just getting relative path from full one here. Maaaaaybe I'll fix it at some point..
+	for( const std::string &filename2 : sfilelist.list )
+	{
+		std::string filename;
+		int slashNum = 0;
+		for (int i = filename2.length() - 1; i >= 0; i--)
+		{
+			if (filename2[i] == '/')
+			{
+				slashNum++;
+			}
+			else
+			{
+				continue;
+			}
+
+			if (slashNum >= 4)
+			{
+				filename = filename2.substr(i + 1, filename2.length() - i);
+				break;
+			}
+		}
+#else
+	for( const std::string &filename2 : sfilelist.list )
+#endif
         std::string buf = filename.substr(filename.size()-1);
 
         const int foundEp = atoi(buf.c_str());

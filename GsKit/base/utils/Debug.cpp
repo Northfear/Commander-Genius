@@ -341,7 +341,7 @@ void OlxWriteCoreDump(const char* fileName)
 	//OlxWriteCoreDump_Win32(fileName, NULL);
 }
 
-#else
+#elif !defined(VITA)
 
 #ifdef GCOREDUMPER
 #include <google/coredumper.h>

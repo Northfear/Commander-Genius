@@ -47,6 +47,11 @@ void switch_exit();
 }
 #endif
 
+#ifdef VITA
+#include <psp2/kernel/processmgr.h>
+int _newlib_heap_size_user = 128 * 1024 * 1024;
+#endif
+
 #include <base/utils/FindFile.h>
 #include <base/utils/CrashHandler.h>
 #include <base/GsApp.h>
@@ -214,5 +219,10 @@ int main(int argc, char *argv[])
     switch_exit();
 #endif
     CrashHandler::uninit();
+
+#ifdef VITA
+    sceKernelExitProcess( 0 );
+#endif
+
     return 0;
 }
