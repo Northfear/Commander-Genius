@@ -18,6 +18,10 @@
 	#undef USE_OPENGL
 #endif
 
+#if defined(VITA)
+	#define SINGLEPLAYER
+#endif
+
 #if defined(EMBEDDED) || TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 	#define SINGLEPLAYER
 #endif

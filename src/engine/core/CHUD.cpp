@@ -204,6 +204,11 @@ void CHUD::renderGalaxy()
   // Draw the HUD with all the digits
   auto hudBlitsfc = mHUDBlit.getSDLSurface();
 
+#ifdef VITA
+  // fixes transparent HUD after game loading on PS Vita
+  mHUDBlit.fillRGB(0, 0, 0);
+#endif
+
   const int w = mHUDBox.getWidth();
   const int h = mHUDBox.getHeight();
 

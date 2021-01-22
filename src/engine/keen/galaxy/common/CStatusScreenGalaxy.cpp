@@ -635,5 +635,10 @@ void CStatusScreenGalaxy::GenerateStatusEp6()
 void CStatusScreenGalaxy::draw()
 {
     auto weakBlit = GsWeakSurface(gVideoDriver.getBlitSurface());
+#ifdef VITA
+    // mStatusSfcTransformed is transparent on Vita
+    mStatusSurface.blitTo(weakBlit);
+#else
     mStatusSfcTransformed.blitTo(weakBlit);
+#endif
 }
