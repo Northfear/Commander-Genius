@@ -1,3 +1,47 @@
+# PS Vita port of [Commander Genius](https://github.com/gerstrong/Commander-Genius)
+
+## Install
+
+- Download CommanderGenius.vpk from https://github.com/Northfear/Commander-Genius/releases.
+- Install it to your Vita.
+- Create `ux0:data/CommanderGenius/games/` folder and copy Commander Keen games there (extracted folders with exe files inside).
+
+## Building
+
+### Prerequisites
+- DolceSDK
+- SDL 2
+- SDL_mixer
+- SDL_image
+- SDL_ttf
+
+### Build
+```
+export SDLDIR=$DOLCESDK/arm-dolce-eabi/
+export SDL2DIR=$DOLCESDK/arm-dolce-eabi/
+mkdir build && cd build
+cmake .. -DCMAKE_TOOLCHAIN_FILE=$DOLCESDK/share/dolce.toolchain.cmake -DPSVITA=1 -DUSE_BOOST=0 -DUSE_OPENGL=1 -DUSE_CRASHHANDLER=0 -DDOWNLOADER=0 -DCMAKE_BUILD_TYPE=None
+make
+```
+
+Generated VPK file is located in build/src folder.
+
+## Port info
+
+### Input
+
+- D-Pad - Movement
+- Cross - Jump
+- Circle - Fire
+- Square - Pogo
+- Triangle - Run
+- Select - Status
+- Start - Back/Menu
+
+### Other
+
+If you've messed up game options somehow and game refuses to launch, try deleting config file `ux0:data/CommanderGenius/games/cgenius.cfg`
+
 # Commander Genius
 
 [![pipeline status](https://gitlab.com/Dringgstein/Commander-Genius/badges/master/pipeline.svg)](https://gitlab.com/Dringgstein/Commander-Genius/-/commits/master)
