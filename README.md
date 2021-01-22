@@ -20,7 +20,7 @@
 export SDLDIR=$DOLCESDK/arm-dolce-eabi/
 export SDL2DIR=$DOLCESDK/arm-dolce-eabi/
 mkdir build && cd build
-cmake .. -DCMAKE_TOOLCHAIN_FILE=$DOLCESDK/share/dolce.toolchain.cmake -DPSVITA=1 -DUSE_BOOST=0 -DUSE_OPENGL=1 -DUSE_CRASHHANDLER=0 -DDOWNLOADER=0 -DCMAKE_BUILD_TYPE=None
+cmake .. -DCMAKE_TOOLCHAIN_FILE=$DOLCESDK/share/dolce.toolchain.cmake -DPSVITA=1 -DUSE_BOOST=0 -DUSE_OPENGL=0 -DUSE_CRASHHANDLER=0 -DDOWNLOADER=0 -DCMAKE_BUILD_TYPE=None
 make
 ```
 
