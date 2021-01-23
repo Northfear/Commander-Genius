@@ -49,6 +49,7 @@ void switch_exit();
 
 #ifdef VITA
 #include <psp2/kernel/processmgr.h>
+#include <psp2/power.h>
 int _newlib_heap_size_user = 128 * 1024 * 1024;
 #endif
 
@@ -88,6 +89,9 @@ int main(int argc, char *argv[])
     switch_init();
 #endif
 
+#ifdef VITA
+    scePowerSetArmClockFrequency( 444 );
+#endif
 
     const std::string appName = "Commander Genius";
     gApp.setName(appName);    
