@@ -53,6 +53,10 @@ CInput::CInput()
 
     mpPollSem = SDL_CreateSemaphore(1);
 
+#if SDL_VERSION_ATLEAST( 2, 0, 10 ) && defined(VITA)
+    //disable mouse emulation, since rear touchpad on Vita triggers it too
+    SDL_SetHint( SDL_HINT_TOUCH_MOUSE_EVENTS, "0" );
+#endif
 }
 
 
@@ -989,6 +993,11 @@ void CInput::pollEvents()
 #if SDL_VERSION_ATLEAST(2, 0, 0)
 		case SDL_FINGERDOWN:
         {
+#ifdef VITA
+            //ignore rear touchpad
+            if (Event.tfinger.touchId != 0)
+                break;
+#endif
 #ifdef USE_VIRTUALPAD
             // If Virtual gamepad takes control...
             if(gVideoDriver.VGamePadEnabled() && mpVirtPad &&
@@ -1020,7 +1029,10 @@ void CInput::pollEvents()
         break;
 
         case SDL_FINGERUP:
-
+#ifdef VITA
+            if (Event.tfinger.touchId != 0)
+                break;
+#endif
 #ifdef USE_VIRTUALPAD
             if(gVideoDriver.VGamePadEnabled() && mpVirtPad &&
                mpVirtPad->active())
@@ -1055,6 +1067,10 @@ void CInput::pollEvents()
 
         case SDL_FINGERMOTION:
         {
+#ifdef VITA
+            if (Event.tfinger.touchId != 0)
+                break;
+#endif
             GsVec2D<int> rotPt(Event.tfinger.x*float(activeArea.dim.x),
                                Event.tfinger.y*float(activeArea.dim.y));
 
